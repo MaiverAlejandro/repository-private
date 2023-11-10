@@ -15,7 +15,7 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 16
-    - run: npm i --force
+    - run: npm i ./external-ng-otp --force
 
   publish-gpr:
     needs: build
@@ -29,14 +29,14 @@ jobs:
         with:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
-      - run: npm ci
+      - run: npm ci ./external-ng-otp
 
       - name: Building library
-        run: npm run build
+        run: npm run build --prefix ./external-ng-otp
         
       - name: Publish library
-        working-directory: ./dist/ng-otp-input
-        run: npm publish
+        working-directory: ./external-ng-otp/dist/ng-otp-input
+        run: npm publish ./external-ng-otp
 
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}

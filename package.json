@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "ng-otp-input-repo": "file:external-ng-otp"
+  }
+}
